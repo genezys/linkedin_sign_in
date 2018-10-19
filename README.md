@@ -17,30 +17,26 @@ gem 'linkedin_sign_in'
 Linkedin Sign-In for Rails requires Rails 5.2 or newer.
 
 
-## Configuration (TODO)
+## Configuration
 
 First, set up an OAuth 2.0 Client ID in the Linkedin API Console:
 
-1. Go to the [API Console](https://console.developers.linkedin.com/apis/credentials).
+1. Go to the [Developer Portal](https://www.linkedin.com/developer/apps).
 
-2. In the projects menu at the top of the page, ensure the correct project is selected or create a new one.
+2. Create an application.
 
-3. In the left-side navigation menu, choose APIs & Services → Credentials.
+3. Submit your application information.
 
-4. Click the button labeled “Create credentials.” In the menu that appears, choose to create an **OAuth client ID**.
+4. You are presented with a client ID and client secret. Save these.
 
-5. When prompted to select an application type, select **Web application**.
-
-6. Enter your application’s name.
-
-7. This gem adds a single OAuth callback to your app at `/linkedin_sign_in/callback`. Under **Authorized redirect URIs**,
+5. This gem adds a single OAuth callback to your app at `/linkedin_sign_in/callback`. Under **Authorized Redirect URLs**,
    add that callback for your application’s domain: for example, `https://example.com/linkedin_sign_in/callback`.
 
    To use Linkedin sign-in in development, you’ll need to add another redirect URI for your local environment, like
    `http://localhost:3000/linkedin_sign_in/callback`. For security reasons, we recommend using a separate
    client ID for local development. Repeat these instructions to set up a new client ID for development.
 
-8. Click the button labeled “Create.” You’ll be presented with a client ID and client secret. Save these.
+6. Click the button labeled Update.
 
 With your client ID set up, configure your Rails application to use it. Run `bin/rails credentials:edit` to edit your
 app’s [encrypted credentials](https://guides.rubyonrails.org/security.html#custom-credentials) and add the following:
