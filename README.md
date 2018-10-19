@@ -1,3 +1,5 @@
+This gem is shamlessly based on [Google SignIn by Basecamp](https://github.com/basecamp/google_sign_in).
+
 # Linkedin Sign-In for Rails
 
 This gem allows you to add Linkedin sign-in to your Rails app. You can let users sign up for and sign in to your service
