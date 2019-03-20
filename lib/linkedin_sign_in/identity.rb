@@ -30,9 +30,9 @@ module LinkedinSignIn
     end
 
     def current_company_name
-      positions = @payload["positions"]["values"]
+      positions = @payload.dig("positions", "values")
       current_position = positions.find { |position| position["isCurrent"] }
-      current_position["company"]["name"]
+      current_position.dig("company", "name")
     end
 
     private
