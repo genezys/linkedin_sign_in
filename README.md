@@ -110,7 +110,7 @@ class LoginsController < ApplicationController
       if id_token = flash[:linkedin_sign_in][:token]
         User.find_by linkedin_id: LinkedIn::Identity.new(id_token).user_id
       elsif error = flash[:linkedin_sign_in][:error]
-        logger.error "Google authentication error: #{error}"
+        logger.error "LinkedIn authentication error: #{error}"
         nil
 	    end
     end
