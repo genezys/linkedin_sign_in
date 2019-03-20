@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name     = 'linkedin_sign_in'
-  s.version  = '0.3.1'
+  s.version  = '0.3.2'
   s.authors  = ['Vincent Robert']
   s.email    = ['vincent.robert@genezys.net']
   s.summary  = 'Sign in (or up) with Linkedin for Rails applications'
