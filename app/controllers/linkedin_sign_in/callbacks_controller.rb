@@ -15,9 +15,9 @@ class LinkedinSignIn::CallbacksController < LinkedinSignIn::BaseController
 
     def linkedin_sign_in_response
       if valid_request? && params[:code].present?
-        { linkedin_sign_in_token: token }
+        { linkedin_sign_in: { token: token } }
       else
-        { linkedin_sign_in_error: error_message }
+        { linkedin_sign_in: { error: error_message } }
       end
     end
 

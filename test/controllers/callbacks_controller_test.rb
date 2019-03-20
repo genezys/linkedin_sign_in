@@ -9,8 +9,8 @@ class LinkedinSignIn::CallbacksControllerTest < ActionDispatch::IntegrationTest
 
     get linkedin_sign_in.callback_url(code: '4/SgCpHSVW5-Cy', state: flash[:state])
     assert_redirected_to 'http://www.example.com/login'
-    assert_equal 'ya29.GlwIBo', flash[:linkedin_sign_in_token]
-    assert_nil flash[:linkedin_sign_in_error]
+    assert_equal 'ya29.GlwIBo', flash[:linkedin_sign_in][:token]
+    assert_nil flash[:linkedin_sign_in][:error]
   end
 
   LinkedinSignIn::OAUTH2_ERRORS.each do |error|
@@ -20,8 +20,8 @@ class LinkedinSignIn::CallbacksControllerTest < ActionDispatch::IntegrationTest
 
       get linkedin_sign_in.callback_url(error: error, state: flash[:state])
       assert_redirected_to 'http://www.example.com/login'
-      assert_nil flash[:linkedin_sign_in_token]
-      assert_equal error, flash[:linkedin_sign_in_error]
+      assert_nil flash[:linkedin_sign_in][:token]
+      assert_equal error, flash[:linkedin_sign_in][:error]
     end
   end
 
@@ -31,8 +31,8 @@ class LinkedinSignIn::CallbacksControllerTest < ActionDispatch::IntegrationTest
 
     get linkedin_sign_in.callback_url(error: 'unknown error code', state: flash[:state])
     assert_redirected_to 'http://www.example.com/login'
-    assert_nil flash[:linkedin_sign_in_token]
-    assert_equal "invalid_request", flash[:linkedin_sign_in_error]
+    assert_nil flash[:linkedin_sign_in][:token]
+    assert_equal "invalid_request", flash[:linkedin_sign_in][:error]
   end
 
   test "receiving neither code nor error" do
@@ -41,8 +41,8 @@ class LinkedinSignIn::CallbacksControllerTest < ActionDispatch::IntegrationTest
 
     get linkedin_sign_in.callback_url(state: flash[:state])
     assert_redirected_to 'http://www.example.com/login'
-    assert_nil flash[:linkedin_sign_in_token]
-    assert_equal 'invalid_request', flash[:linkedin_sign_in_error]
+    assert_nil flash[:linkedin_sign_in][:token]
+    assert_equal 'invalid_request', flash[:linkedin_sign_in][:error]
   end
 
   test "protecting against CSRF without flash state" do
@@ -51,8 +51,8 @@ class LinkedinSignIn::CallbacksControllerTest < ActionDispatch::IntegrationTest
 
     get linkedin_sign_in.callback_url(code: '4/SgCpHSVW5-Cy', state: 'invalid')
     assert_redirected_to 'http://www.example.com/login'
-    assert_nil flash[:linkedin_sign_in_token]
-    assert_equal 'invalid_request', flash[:linkedin_sign_in_error]
+    assert_nil flash[:linkedin_sign_in][:token]
+    assert_equal 'invalid_request', flash[:linkedin_sign_in][:error]
   end
 
   test "protecting against CSRF with invalid state" do
@@ -62,8 +62,8 @@ class LinkedinSignIn::CallbacksControllerTest < ActionDispatch::IntegrationTest
 
     get linkedin_sign_in.callback_url(code: '4/SgCpHSVW5-Cy', state: 'invalid')
     assert_redirected_to 'http://www.example.com/login'
-    assert_nil flash[:linkedin_sign_in_token]
-    assert_equal 'invalid_request', flash[:linkedin_sign_in_error]
+    assert_nil flash[:linkedin_sign_in][:token]
+    assert_equal 'invalid_request', flash[:linkedin_sign_in][:error]
   end
 
   test "protecting against CSRF with missing state" do
@@ -73,8 +73,8 @@ class LinkedinSignIn::CallbacksControllerTest < ActionDispatch::IntegrationTest
 
     get linkedin_sign_in.callback_url(code: '4/SgCpHSVW5-Cy')
     assert_redirected_to 'http://www.example.com/login'
-    assert_nil flash[:linkedin_sign_in_token]
-    assert_equal 'invalid_request', flash[:linkedin_sign_in_error]
+    assert_nil flash[:linkedin_sign_in][:token]
+    assert_equal 'invalid_request', flash[:linkedin_sign_in][:error]
   end
 
   test "protecting against open redirects" do
