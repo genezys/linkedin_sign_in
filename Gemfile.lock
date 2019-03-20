@@ -144,7 +144,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bundler (~> 1.15)
+  bundler (~> 2.0)
   byebug
   jwt (>= 1.5.6)
   linkedin_sign_in!
@@ -152,4 +152,4 @@ DEPENDENCIES
   webmock (>= 3.4.2)
 
 BUNDLED WITH
-   1.16.4
+   2.0.1
