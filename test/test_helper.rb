@@ -17,9 +17,6 @@ if LINKEDIN_X509_CERTIFICATE.not_after <= Time.now
   raise "Test certificate is expired. Generate a new one and run the tests again: `bundle exec rake test:certificate:generate`."
 end
 
-require 'linkedin-id-token'
-# LinkedinSignIn::Identity.validator = Validator.new(x509_cert: LINKEDIN_X509_CERTIFICATE)
-
 class ActionView::TestCase
   private
     def assert_dom_equal(expected, actual, message = nil)

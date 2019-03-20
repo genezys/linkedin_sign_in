@@ -1,4 +1,3 @@
-require 'linkedin-id-token'
 require 'active_support/core_ext/module/delegation'
 
 module LinkedinSignIn
