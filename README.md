@@ -126,20 +126,18 @@ origin as your application. This means it must have the same protocol, host, and
 The `LinkedinSignIn::Identity` class decodes and verifies the integrity of a Linkedin ID token. It exposes the profile
 information contained in the token via the following instance methods:
 
-* `name`
+* `first_name`
+
+* `last_name`
 
 * `email_address`
 
 * `user_id`: A string that uniquely identifies a single Linkedin user. Use this, not `email_address`, to associate a
   Linkedin user with an application user. A Linkedin user’s email address may change, but their `user_id` will remain constant.
 
-* `email_verified?`
-
 * `avatar_url`
 
-* `locale`
-
-* `hosted_domain`: The user’s hosted G Suite domain, provided only if they belong to a G Suite.
+* `current_company_name`: name of the current company the user is working at
 
 
 ## Security
