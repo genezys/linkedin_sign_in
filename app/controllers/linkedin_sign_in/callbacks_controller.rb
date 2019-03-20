@@ -14,7 +14,7 @@ class LinkedinSignIn::CallbacksController < LinkedinSignIn::BaseController
 
   private
     def valid_request?
-      flash[:state].present? && params.require(:state) == flash[:state] && params[:error].blank?
+      flash[:state].present? && params[:state] == flash[:state] && params[:error].blank?
     end
 
     def proceed_to_url
