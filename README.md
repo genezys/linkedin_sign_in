@@ -78,7 +78,8 @@ This gem provides a `linkedin_sign_in_button` helper. It generates a button whic
 ```
 
 The `proceed_to` argument is required. After authenticating with Linkedin, the gem redirects to `proceed_to`, providing
-a Linkedin ID token in `flash[:linkedin_sign_in_token]`. Your application decides what to do with it:
+a LinkedIn ID token in `flash[:linkedin_sign_in_token]` or an [OAuth authorizaton code grant error](https://tools.ietf.org/html/rfc6749#section-4.1.2.1)
+in `flash[:linkedin_sign_in_error]`. Your application decides what to do with it:
 
 ```ruby
 # config/routes.rb
@@ -106,9 +107,12 @@ class LoginsController < ApplicationController
 
   private
     def authenticate_with_linkedin
-      if flash[:linkedin_sign_in_token].present?
-        User.find_by linkedin_id: LinkedinSignIn::Identity.new(flash[:linkedin_sign_in_token]).user_id
-      end
+      if id_token = flash[:linkedin_sign_in_token]
+        User.find_by linkedin_id: LinkedIn::Identity.new(id_token).user_id
+      elsif error = flash[:linkedin_sign_in_error]
+        logger.error "Google authentication error: #{error}"
+        nil
+	    end
     end
 end
 ```
