@@ -20,6 +20,13 @@ class LinkedinSignIn::RedirectProtectorTest < ActiveSupport::TestCase
     end
   end
 
+  test "disallows empty URL target" do
+    assert_raises LinkedinSignIn::RedirectProtector::Violation do
+      LinkedinSignIn::RedirectProtector.ensure_same_origin nil, 'http://genezys.net'
+    end
+  end
+
+
   test "allows URL target with same origin as source" do
     assert_nothing_raised do
       LinkedinSignIn::RedirectProtector.ensure_same_origin 'https://genezys.net', 'https://genezys.net'
