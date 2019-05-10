@@ -1,6 +1,8 @@
 require 'securerandom'
 
 class LinkedinSignIn::AuthorizationsController < LinkedinSignIn::BaseController
+  skip_forgery_protection only: :create
+
   def create
     redirect_to login_url(scope: 'r_basicprofile r_emailaddress', state: state),
       flash: { proceed_to: params.require(:proceed_to), state: state }
