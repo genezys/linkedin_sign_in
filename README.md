@@ -1,4 +1,4 @@
-This gem is shamlessly based on [Google SignIn by Basecamp](https://github.com/basecamp/google_sign_in).
+This gem is shamelessly based on [Google SignIn by Basecamp](https://github.com/basecamp/google_sign_in).
 
 # Linkedin Sign-In for Rails
 
