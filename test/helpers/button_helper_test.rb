@@ -4,8 +4,7 @@ class LinkedinSignIn::ButtonHelperTest < ActionView::TestCase
   test "generating a login button with text content" do
     assert_dom_equal <<-HTML, linkedin_sign_in_button("Log in with Linkedin", proceed_to: "https://www.example.com/login")
       <form action="/linkedin_sign_in/authorization" accept-charset="UTF-8" method="post">
-        <input name="utf8" type="hidden" value="&#x2713;" />
-        <input name="proceed_to" type="hidden" value="https://www.example.com/login" />
+        <input type="hidden" name="proceed_to" value="https://www.example.com/login" autocomplete="off" />
         <button type="submit">Log in with Linkedin</button>
       </form>
     HTML
@@ -14,8 +13,7 @@ class LinkedinSignIn::ButtonHelperTest < ActionView::TestCase
   test "generating a login button with HTML content" do
     assert_dom_equal <<-HTML, linkedin_sign_in_button(proceed_to: "https://www.example.com/login") { image_tag("linkedin.png") }
       <form action="/linkedin_sign_in/authorization" accept-charset="UTF-8" method="post">
-        <input name="utf8" type="hidden" value="&#x2713;" />
-        <input name="proceed_to" type="hidden" value="https://www.example.com/login" />
+        <input type="hidden" name="proceed_to" value="https://www.example.com/login" autocomplete="off" />
         <button type="submit"><img src="/images/linkedin.png"></button>
       </form>
     HTML
@@ -27,8 +25,7 @@ class LinkedinSignIn::ButtonHelperTest < ActionView::TestCase
 
     assert_dom_equal <<-HTML, button
       <form action="/linkedin_sign_in/authorization" accept-charset="UTF-8" method="post">
-        <input name="utf8" type="hidden" value="&#x2713;" />
-        <input name="proceed_to" type="hidden" value="https://www.example.com/login" />
+        <input type="hidden" name="proceed_to" value="https://www.example.com/login" autocomplete="off" />
         <button type="submit" class="login-button" data-disable-with="Loading Linkedin login…">Log in with Linkedin</button>
       </form>
     HTML

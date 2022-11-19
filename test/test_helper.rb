@@ -17,6 +17,17 @@ if LINKEDIN_X509_CERTIFICATE.not_after <= Time.now
   raise "Test certificate is expired. Generate a new one and run the tests again: `bundle exec rake test:certificate:generate`."
 end
 
+# Suppress incorrect OAuth2 client warning about having both an access token
+# and an ID token. They aren't interchangeable. And ID token is returned with
+# OIDC scoped requests and is used for authentication, whereas the access token
+# is used for authorization.
+module SuppressOAuthExtraTokensWarning
+  def from_hash(client, hash)
+    new client, hash.fetch("access_token"), hash.except("access_token")
+  end
+end
+OAuth2::AccessToken.singleton_class.prepend SuppressOAuthExtraTokensWarning
+
 class ActionView::TestCase
   private
     def assert_dom_equal(expected, actual, message = nil)
