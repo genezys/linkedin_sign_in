@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name     = 'linkedin_sign_in'
-  s.version  = '0.5.0'
+  s.version  = '0.6.0'
   s.authors  = ['Vincent Robert']
   s.email    = ['vincent.robert@genezys.net']
   s.summary  = 'Sign in (or up) with Linkedin for Rails applications'
@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'rails', '>= 5.2.0'
   s.add_dependency 'oauth2', '>= 1.4.0'
 
-  s.add_development_dependency 'bundler', '~> 1.17.2'
+  s.add_development_dependency 'bundler', '~> 2.3.26'
   s.add_development_dependency 'jwt', '>= 1.5.6'
   s.add_development_dependency 'webmock', '>= 3.4.2'
 
